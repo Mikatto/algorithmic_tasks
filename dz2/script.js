@@ -1,72 +1,54 @@
-//TASK1 - Convert Celsius to Fahrenheit
-//The algorithm to convert from Celsius to Fahrenheit is the temperature in Celsius times 9/5, plus 32.
+//TASK1 - Confirm the Ending
+//Check if a string (first argument, str) ends with the given target string (second argument, target).
 
-function convertToF(celsius) {
-    let fahrenheit = (celsius * 9 / 5) + 32;
-    return fahrenheit;
+function confirmEnding(str, target) {
+    return str.slice(str.length - target.length) === target;
 }
+confirmEnding("Bastian", "an");
 
-convertToF(30)
+//TASK2 - Repeat a String Repeat a String
+//Repeat a given string str (first argument) for num times (second argument).
+//Return an empty string if num is not a positive number. For the purpose of this challenge, do not use the built-in .repeat() method
 
-//TASK2 - Return Largest Numbers in Arrays
-//Return an array consisting of the largest number from each provided sub-array. For simplicity, the provided array will contain exactly 4 sub-arrays.
-// Remember, you can iterate through an array with a simple for loop, and access each member with array syntax arr[i].
+function repeatStringNumTimes(str, num) {
 
-function largestOfFour(arr) {
-    return arr.map(function (group) {
-        return group.reduce(function (prev, current) {
-            return current > prev ? current : prev;
-        });
-    });
-}
-
-largestOfFour([
-    [4, 5, 1, 3],
-    [13, 27, 18, 26],
-    [32, 35, 37, 39],
-    [1000, 1001, 857, 1]
-])
-
-//TASK3 - Reverse a String
-// Reverse the provided string.
-// You may need to turn the string into an array before you can reverse it.
-// Your result must be a string.
-
-function reverseString(str) {
-    return str.split("").reverse().join("")
-}
-
-reverseString("hello");
-
-//TASK4 - Factorialize a Number
-// Return the factorial of the provided integer.
-// If the integer is represented with the letter n, a factorial is the product of all positive integers less than or equal to n.
-// Factorials are often represented with the shorthand notation n!
-
-function factorialize(num) {
-    for (var fact = 1; num > 0; num--) {
-        fact *= num;
+    if (num < 1) {
+        return '';
+    } else {
+        return str + repeatStringNumTimes(str, num - 1)
     }
-    return fact;
 }
 
-factorialize(5);
+repeatStringNumTimes("abc", 3);
 
-//TASK5 - Find the Longest Word in a String
-// Return the length of the longest word in the provided sentence.
-// Your response should be a number.
+//TASK3 - Truncate a String
+//Truncate a string (first argument) if it is longer than the given maximum string length (second argument).
+// Return the truncated string with a ... ending.
 
-function findLongestWordLength(str) {
-    let splitStr = str.split(' ');
-    let longestWord = 0;
-
-    for (let i = 0; i < splitStr.length; i++) {
-        if (splitStr[i].length > longestWord) {
-            longestWord = splitStr[i].length;
-        }
+function truncateString(str, num) {
+    if (str.length > num) {
+        return str.slice(0, num) + "...";
+    } else {
+        return str;
     }
-
-    return longestWord;
 }
 
-findLongestWordLength("The quick brown fox jumped over the lazy dog");
+truncateString("Peter Piper picked a peck of pickled peppers", 11);
+
+//TASK4 - Finders Keepers
+//Create a function that looks through an array arr and returns the first element in it that passes a 'truth test'.
+//This means that given an element x, the 'truth test' is passed if func(x) is true. If no element passes the test, return undefined.
+
+function findElement(arr, func) {
+    return arr.find(func);
+}
+
+findElement([1, 2, 3, 4], num => num % 2 === 0);
+
+//TASK5 - Boo who
+//Check if a value is classified as a boolean primitive. Return true or false. Boolean primitives are true and false.
+function booWho(bool) {
+    return typeof bool === "boolean";
+}
+
+booWho(null);
